@@ -107,3 +107,37 @@ def registro_facial():
         detector = MTCNN()
         caras = detector.detect_faces(pixeles)
         reg_rostro(img, caras)
+
+
+# ------------------------Funcion que asignaremos al boton login -------------------------------------------------
+
+def login():
+    global pantalla2
+    global verificacion_usuario
+    global verificacion_contra
+    global usuario_entrada2
+    global contra_entrada2
+
+    pantalla2 = Toplevel(pantalla)
+    pantalla2.title("Login")
+    pantalla2.geometry("300x250")  # Creamos la ventana
+    Label(pantalla2, text="Login facial: debe de asignar un usuario:").pack()
+    Label(pantalla2, text="Login tradicional: debe asignar usuario y contraseña:").pack()
+    Label(pantalla2, text="").pack()  # Dejamos un poco de espacio
+
+    verificacion_usuario = StringVar()
+    verificacion_contra = StringVar()
+
+    # ---------------------------------- Ingresamos los datos --------------------------
+    Label(pantalla2, text="Usuario * ").pack()
+    usuario_entrada2 = Entry(pantalla2, textvariable=verificacion_usuario)
+    usuario_entrada2.pack()
+    Label(pantalla2, text="Contraseña * ").pack()
+    contra_entrada2 = Entry(pantalla2, textvariable=verificacion_contra)
+    contra_entrada2.pack()
+    Label(pantalla2, text="").pack()
+    Button(pantalla2, text="Inicio de Sesion Tradicional", width=20, height=1, command=verificacion_login).pack()
+
+    # ------------ Vamos a crear el boton para hacer el login facial --------------------
+    Label(pantalla2, text="").pack()
+    Button(pantalla2, text="Inicio de Sesion Facial", width=20, height=1, command=login_facial).pack()
