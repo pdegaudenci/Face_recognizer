@@ -6,41 +6,23 @@ import cv2
 from matplotlib import pyplot
 from mtcnn.mtcnn import MTCNN
 import numpy as np
-# ------------------------Funcion que asignaremos al boton login -------------------------------------------------
+# ------------------------ Crearemos una funcion que se encargara de registrar el usuario ---------------------
 
-def login():
-    global pantalla2
-    global verificacion_usuario
-    global verificacion_contra
-    global usuario_entrada2
-    global contra_entrada2
+def registrar_usuario():
+    usuario_info = usuario.get()  # Obetnemos la informacion alamcenada en usuario
+    contra_info = contra.get()  # Obtenemos la informacion almacenada en contra
 
-    pantalla2 = Toplevel(pantalla)
-    pantalla2.title("Login")
-    pantalla2.geometry("300x250")  # Creamos la ventana
-    Label(pantalla2, text="Login facial: debe de asignar un usuario:").pack()
-    Label(pantalla2, text="Login tradicional: debe asignar usuario y contraseña:").pack()
-    Label(pantalla2, text="").pack()  # Dejamos un poco de espacio
+    archivo = open(usuario_info, "w")  # Abriremos la informacion en modo escritura
+    archivo.write(usuario_info + "\n")  # escribimos la info
+    archivo.write(contra_info)
+    archivo.close()
 
-    verificacion_usuario = StringVar()
-    verificacion_contra = StringVar()
+    # Limpiaremos los text variable
+    usuario_entrada.delete(0, END)
+    contra_entrada.delete(0, END)
 
-    # ---------------------------------- Ingresamos los datos --------------------------
-    Label(pantalla2, text="Usuario * ").pack()
-    usuario_entrada2 = Entry(pantalla2, textvariable=verificacion_usuario)
-    usuario_entrada2.pack()
-    Label(pantalla2, text="Contraseña * ").pack()
-    contra_entrada2 = Entry(pantalla2, textvariable=verificacion_contra)
-    contra_entrada2.pack()
-    Label(pantalla2, text="").pack()
-    Button(pantalla2, text="Inicio de Sesion Tradicional", width=20, height=1, command=verificacion_login).pack()
-
-    # ------------ Vamos a crear el boton para hacer el login facial --------------------
-    Label(pantalla2, text="").pack()
-    Button(pantalla2, text="Inicio de Sesion Facial", width=20, height=1, command=login_facial).pack()
-
-
-
+    # Ahora le diremos al usuario que su registro ha sido exitoso
+    Label(pantalla1, text="Registro Convencional Exitoso", fg="green", font=("Calibri", 11)).pack()
 
 # ------------------------Crearemos una funcion para asignar al boton registro --------------------------------
 def registro():
@@ -79,23 +61,41 @@ def registro():
     Button(pantalla1, text="Registro Facial", width=15, height=1, command=registro_facial).pack()
 
 
-# ------------------------ Crearemos una funcion que se encargara de registrar el usuario ---------------------
+# ------------------------Funcion que asignaremos al boton login -------------------------------------------------
 
-def registrar_usuario():
-    usuario_info = usuario.get()  # Obetnemos la informacion alamcenada en usuario
-    contra_info = contra.get()  # Obtenemos la informacion almacenada en contra
+def login():
+    global pantalla2
+    global verificacion_usuario
+    global verificacion_contra
+    global usuario_entrada2
+    global contra_entrada2
 
-    archivo = open(usuario_info, "w")  # Abriremos la informacion en modo escritura
-    archivo.write(usuario_info + "\n")  # escribimos la info
-    archivo.write(contra_info)
-    archivo.close()
+    pantalla2 = Toplevel(pantalla)
+    pantalla2.title("Login")
+    pantalla2.geometry("300x250")  # Creamos la ventana
+    Label(pantalla2, text="Login facial: debe de asignar un usuario:").pack()
+    Label(pantalla2, text="Login tradicional: debe asignar usuario y contraseña:").pack()
+    Label(pantalla2, text="").pack()  # Dejamos un poco de espacio
 
-    # Limpiaremos los text variable
-    usuario_entrada.delete(0, END)
-    contra_entrada.delete(0, END)
+    verificacion_usuario = StringVar()
+    verificacion_contra = StringVar()
 
-    # Ahora le diremos al usuario que su registro ha sido exitoso
-    Label(pantalla1, text="Registro Convencional Exitoso", fg="green", font=("Calibri", 11)).pack()
+    # ---------------------------------- Ingresamos los datos --------------------------
+    Label(pantalla2, text="Usuario * ").pack()
+    usuario_entrada2 = Entry(pantalla2, textvariable=verificacion_usuario)
+    usuario_entrada2.pack()
+    Label(pantalla2, text="Contraseña * ").pack()
+    contra_entrada2 = Entry(pantalla2, textvariable=verificacion_contra)
+    contra_entrada2.pack()
+    Label(pantalla2, text="").pack()
+    Button(pantalla2, text="Inicio de Sesion Tradicional", width=20, height=1, command=verificacion_login).pack()
+
+    # ------------ Vamos a crear el boton para hacer el login facial --------------------
+    Label(pantalla2, text="").pack()
+    Button(pantalla2, text="Inicio de Sesion Facial", width=20, height=1, command=login_facial).pack()
+
+
+
 
 
 # --------------------------- Funcion para almacenar el registro facial --------------------------------------
@@ -119,7 +119,6 @@ def registro_facial():
             Label(pantalla1, text="Registro Facial Exitoso", fg="green", font=("Calibri", 11)).pack()
 
         # ----------------- Detectamos el rostro y exportamos los pixeles --------------------------
-
 def reg_rostro(img, lista_resultados):
             data = pyplot.imread(img)
             for i in range(len(lista_resultados)):
@@ -139,9 +138,6 @@ def reg_rostro(img, lista_resultados):
             detector = MTCNN()
             caras = detector.detect_faces(pixeles)
             reg_rostro(img, caras)
-
-
-
 
 
 # --------------------------Funcion para el Login Facial --------------------------------------------------------
