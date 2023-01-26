@@ -1,4 +1,4 @@
-# --------------------------------------Importamos librerias--------------------------------------------
+# PASO 1--------------------------------------Importamos librerias--------------------------------------------
 
 from tkinter import *
 import os
@@ -6,7 +6,8 @@ import cv2
 from matplotlib import pyplot
 from mtcnn.mtcnn import MTCNN
 import numpy as np
-# ------------------------ Crearemos una funcion que se encargara de registrar el usuario ---------------------
+
+# Paso 7------------- Crearemos una funcion que se encargara de registrar el usuario ---------------------
 
 def registrar_usuario():
     usuario_info = usuario.get()  # Obetnemos la informacion alamcenada en usuario
@@ -24,7 +25,9 @@ def registrar_usuario():
     # Ahora le diremos al usuario que su registro ha sido exitoso
     Label(pantalla1, text="Registro Convencional Exitoso", fg="green", font=("Calibri", 11)).pack()
 
-# ------------------------Crearemos una funcion para asignar al boton registro --------------------------------
+
+
+# PASO 3------ -----Crearemos una funcion para asignar al boton registro --------------------------------
 def registro():
     global usuario
     global contra  # Globalizamos las variables para usarlas en otras funciones
@@ -61,45 +64,31 @@ def registro():
     Button(pantalla1, text="Registro Facial", width=15, height=1, command=registro_facial).pack()
 
 
-# ------------------------Funcion que asignaremos al boton login -------------------------------------------------
+# PASO 3.2----------------------------------- Funcion para verificar los datos ingresados al login ------------------------------------
 
-def login():
-    global pantalla2
-    global verificacion_usuario
-    global verificacion_contra
-    global usuario_entrada2
-    global contra_entrada2
+def verificacion_login():
+    log_usuario = verificacion_usuario.get()
+    log_contra = verificacion_contra.get()
 
-    pantalla2 = Toplevel(pantalla)
-    pantalla2.title("Login")
-    pantalla2.geometry("300x250")  # Creamos la ventana
-    Label(pantalla2, text="Login facial: debe de asignar un usuario:").pack()
-    Label(pantalla2, text="Login tradicional: debe asignar usuario y contraseña:").pack()
-    Label(pantalla2, text="").pack()  # Dejamos un poco de espacio
+    usuario_entrada2.delete(0, END)
+    contra_entrada2.delete(0, END)
 
-    verificacion_usuario = StringVar()
-    verificacion_contra = StringVar()
-
-    # ---------------------------------- Ingresamos los datos --------------------------
-    Label(pantalla2, text="Usuario * ").pack()
-    usuario_entrada2 = Entry(pantalla2, textvariable=verificacion_usuario)
-    usuario_entrada2.pack()
-    Label(pantalla2, text="Contraseña * ").pack()
-    contra_entrada2 = Entry(pantalla2, textvariable=verificacion_contra)
-    contra_entrada2.pack()
-    Label(pantalla2, text="").pack()
-    Button(pantalla2, text="Inicio de Sesion Tradicional", width=20, height=1, command=verificacion_login).pack()
-
-    # ------------ Vamos a crear el boton para hacer el login facial --------------------
-    Label(pantalla2, text="").pack()
-    Button(pantalla2, text="Inicio de Sesion Facial", width=20, height=1, command=login_facial).pack()
+    lista_archivos = os.listdir()  # Vamos a importar la lista de archivos con la libreria os
+    if log_usuario in lista_archivos:  # Comparamos los archivos con el que nos interesa
+        archivo2 = open(log_usuario, "r")  # Abrimos el archivo en modo lectura
+        verificacion = archivo2.read().splitlines()  # leera las lineas dentro del archivo ignorando el resto
+        if log_contra in verificacion:
+            print("Inicio de sesion exitoso")
+            Label(pantalla2, text="Inicio de Sesion Exitoso", fg="green", font=("Calibri", 11)).pack()
+        else:
+            print("Contraseña incorrecta, ingrese de nuevo")
+            Label(pantalla2, text="Contraseña Incorrecta", fg="red", font=("Calibri", 11)).pack()
+    else:
+        print("Usuario no encontrado")
+        Label(pantalla2, text="Usuario no encontrado", fg="red", font=("Calibri", 11)).pack()
 
 
-
-
-
-# --------------------------- Funcion para almacenar el registro facial --------------------------------------
-
+# PASO 4--------------------------- Funcion para almacenar el registro facial --------------------------------------
 def registro_facial():
      # Vamos a capturar el rostro
      cap = cv2.VideoCapture(0)  # Elegimos la camara con la que vamos a hacer la deteccion
@@ -139,8 +128,39 @@ def reg_rostro(img, lista_resultados):
             caras = detector.detect_faces(pixeles)
             reg_rostro(img, caras)
 
+# PASO 5------------------------Funcion que asignaremos al boton login -------------------------------------------------
+def login():
+    global pantalla2
+    global verificacion_usuario
+    global verificacion_contra
+    global usuario_entrada2
+    global contra_entrada2
 
-# --------------------------Funcion para el Login Facial --------------------------------------------------------
+    pantalla2 = Toplevel(pantalla)
+    pantalla2.title("Login")
+    pantalla2.geometry("300x250")  # Creamos la ventana
+    Label(pantalla2, text="Login facial: debe de asignar un usuario:").pack()
+    Label(pantalla2, text="Login tradicional: debe asignar usuario y contraseña:").pack()
+    Label(pantalla2, text="").pack()  # Dejamos un poco de espacio
+
+    verificacion_usuario = StringVar()
+    verificacion_contra = StringVar()
+
+    # ---------------------------------- Ingresamos los datos --------------------------
+    Label(pantalla2, text="Usuario * ").pack()
+    usuario_entrada2 = Entry(pantalla2, textvariable=verificacion_usuario)
+    usuario_entrada2.pack()
+    Label(pantalla2, text="Contraseña * ").pack()
+    contra_entrada2 = Entry(pantalla2, textvariable=verificacion_contra)
+    contra_entrada2.pack()
+    Label(pantalla2, text="").pack()
+    Button(pantalla2, text="Inicio de Sesion Tradicional", width=20, height=1, command=verificacion_login).pack()
+
+    # ------------ Vamos a crear el boton para hacer el login facial --------------------
+    Label(pantalla2, text="").pack()
+    Button(pantalla2, text="Inicio de Sesion Facial", width=20, height=1, command=login_facial).pack()
+
+# PASO 6-----------Funcion para el Login Facial --------------------------------------------------------
 def login_facial():
     # ------------------------------Vamos a capturar el rostro-----------------------------------------------------
     cap = cv2.VideoCapture(0)  # Elegimos la camara con la que vamos a hacer la deteccion
@@ -217,7 +237,11 @@ def login_facial():
         print("Usuario no encontrado")
         Label(pantalla2, text="Usuario no encontrado", fg="red", font=("Calibri", 11)).pack()
 
-# ------------------------- Funcion de nuestra pantalla principal ------------------------------------------------
+# Paso 7------------- Crearemos una funcion que se encargara de registrar el usuario ---------------------
+
+
+
+# PASO 2--------------- Funcion de nuestra pantalla principal ------------------------------------------------
 
 def pantalla_principal():
     global pantalla  # Globalizamos la variable para usarla en otras funciones
