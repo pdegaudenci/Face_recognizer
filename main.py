@@ -28,3 +28,40 @@ def pantalla_principal():
 
 
 pantalla_principal()
+
+
+# ------------------------Crearemos una funcion para asignar al boton registro --------------------------------
+def registro():
+    global usuario
+    global contra  # Globalizamos las variables para usarlas en otras funciones
+    global usuario_entrada
+    global contra_entrada
+    global pantalla1
+    pantalla1 = Toplevel(pantalla)  # Esta pantalla es de un nivel superior a la principal
+    pantalla1.title("Registro")
+    pantalla1.geometry("300x250")  # Asignamos el tamaño de la ventana
+
+    # --------- Empezaremos a crear las entradas ----------------------------------------
+
+    usuario = StringVar()
+    contra = StringVar()
+
+    Label(pantalla1, text="Registro facial: debe de asignar un usuario:").pack()
+    # Label(pantalla1, text = "").pack()  #Dejamos un poco de espacio
+    Label(pantalla1, text="Registro tradicional: debe asignar usuario y contraseña:").pack()
+    Label(pantalla1, text="").pack()  # Dejamos un poco de espacio
+    Label(pantalla1, text="Usuario * ").pack()  # Mostramos en la pantalla 1 el usuario
+    usuario_entrada = Entry(pantalla1,
+                            textvariable=usuario)  # Creamos un text variable para que el usuario ingrese la info
+    usuario_entrada.pack()
+    Label(pantalla1, text="Contraseña * ").pack()  # Mostramos en la pantalla 1 la contraseña
+    contra_entrada = Entry(pantalla1,
+                           textvariable=contra)  # Creamos un text variable para que el usuario ingrese la contra
+    contra_entrada.pack()
+    Label(pantalla1, text="").pack()  # Dejamos un espacio para la creacion del boton
+    Button(pantalla1, text="Registro Tradicional", width=15, height=1,
+           command=registrar_usuario).pack()  # Creamos el boton
+
+    # ------------ Vamos a crear el boton para hacer el registro facial --------------------
+    Label(pantalla1, text="").pack()
+    Button(pantalla1, text="Registro Facial", width=15, height=1, command=registro_facial).pack()
