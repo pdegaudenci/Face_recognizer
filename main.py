@@ -93,19 +93,18 @@ def registro_facial():
      # Vamos a capturar el rostro
      cap = cv2.VideoCapture(0)  # Elegimos la camara con la que vamos a hacer la deteccion
      while (True):
-            ret, frame = cap.read()  # Leemos el video
-            cv2.imshow('Registro Facial', frame)  # Mostramos el video en pantalla
-            if cv2.waitKey(1) == 27:  # Cuando oprimamos "Escape" rompe el video
-                break
-            usuario_img = usuario.get()
-            cv2.imwrite(usuario_img + ".jpg",
-                    frame)  # Guardamos la ultima caputra del video como imagen y asignamos el nombre del usuario
-            cap.release()  # Cerramos
-            cv2.destroyAllWindows()
+        ret, frame = cap.read()  # Leemos el video
+        cv2.imshow('Registro Facial', frame)  # Mostramos el video en pantalla
+        if cv2.waitKey(1) == 27:  # Cuando oprimamos "Escape" rompe el videoº
+             break
+     usuario_img = usuario.get()
+     cv2.imwrite(usuario_img + ".jpg", frame)  # Guardamos la ultima caputra del video como imagen y asignamos el nombre del usuario
+     cap.release()  # Cerramos
+     cv2.destroyAllWindows()
 
-            usuario_entrada.delete(0, END)  # Limpiamos los text variables
-            contra_entrada.delete(0, END)
-            Label(pantalla1, text="Registro Facial Exitoso", fg="green", font=("Calibri", 11)).pack()
+     usuario_entrada.delete(0, END)  # Limpiamos los text variables
+     contra_entrada.delete(0, END)
+     Label(pantalla1, text="Registro Facial Exitoso", fg="green", font=("Calibri", 11)).pack()
 
         # ----------------- Detectamos el rostro y exportamos los pixeles --------------------------
 def reg_rostro(img, lista_resultados):
