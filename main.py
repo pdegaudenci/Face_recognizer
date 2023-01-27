@@ -9,6 +9,10 @@ import numpy as np
 
 # Paso 7------------- Crearemos una funcion que se encargara de registrar el usuario ---------------------
 path="./imagenes"
+try:
+  os.stat(path)
+except:
+  os.mkdir(path)
 
 def registrar_usuario():
     usuario_info = usuario.get()  # Obetnemos la informacion alamcenada en usuario
@@ -74,7 +78,7 @@ def verificacion_login():
     usuario_entrada2.delete(0, END)
     contra_entrada2.delete(0, END)
 
-    lista_archivos = os.listdir()  # Vamos a importar la lista de archivos con la libreria os
+    lista_archivos = os.listdir(path)  # Vamos a importar la lista de archivos con la libreria os
     if log_usuario in lista_archivos:  # Comparamos los archivos con el que nos interesa
         archivo2 = open(log_usuario, "r")  # Abrimos el archivo en modo lectura
         verificacion = archivo2.read().splitlines()  # leera las lineas dentro del archivo ignorando el resto
@@ -180,7 +184,7 @@ def login_facial():
         if cv2.waitKey(1) == 27:  # Cuando oprimamos "Escape" rompe el video
             break
     usuario_login = verificacion_usuario.get()  # Con esta variable vamos a guardar la foto pero con otro nombre para no sobreescribir
-    cv2.imwrite(path+usuario_login + "LOG.jpg",
+    cv2.imwrite(usuario_login + "LOG.jpg",
                 frame)  # Guardamos la ultima caputra del video como imagen y asignamos el nombre del usuario
     cap.release()  # Cerramos
     cv2.destroyAllWindows()
@@ -233,7 +237,12 @@ def login_facial():
 
     im_archivos = os.listdir(path)  # Vamos a importar la lista de archivos con la libreria os
     if usuario_login + ".jpg" in im_archivos:  # Comparamos los archivos con el que nos interesa
+        # os.chdir(path)
+        directorio_ppal = os.getcwd()
+        os.chdir(path)
+        ## Ejecutar funcion
         rostro_reg = cv2.imread(usuario_login + ".jpg", 0)  # Importamos el rostro del registro
+        os.chdir(directorio_ppal)
         rostro_log = cv2.imread(usuario_login + "LOG.jpg", 0)  # Importamos el rostro del inicio de sesion
         similitud = orb_sim(rostro_reg, rostro_log)
         if similitud >= 0.98:
