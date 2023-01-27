@@ -245,7 +245,7 @@ def login_facial():
         os.chdir(directorio_ppal)
         rostro_log = cv2.imread(usuario_login + "LOG.jpg", 0)  # Importamos el rostro del inicio de sesion
         similitud = orb_sim(rostro_reg, rostro_log)
-        if similitud >= 0.98:
+        if similitud >= 0.94:
             Label(pantalla2, text="Inicio de Sesion Exitoso", fg="green", font=("Calibri", 11)).pack()
             print("Bienvenido al sistema usuario: ", usuario_login)
             print("Compatibilidad con la foto del registro: ", similitud)
@@ -267,7 +267,7 @@ def pantalla_principal():
     global pantalla  # Globalizamos la variable para usarla en otras funciones
     pantalla = Tk()
     pantalla.geometry("300x250")  # Asignamos el tamaño de la ventana
-    pantalla.title("Aprende e Ingenia")  # Asignamos el titulo de la pantalla
+    pantalla.title("FacialRecognitionF5")  # Asignamos el titulo de la pantalla
     Label(text="Login Inteligente", bg="gray", width="300", height="2",
           font=("Verdana", 13)).pack()  # Asignamos caracteristicas de la ventana
 
