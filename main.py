@@ -8,6 +8,7 @@ from mtcnn.mtcnn import MTCNN
 import numpy as np
 
 # Paso 7------------- Crearemos una funcion que se encargara de registrar el usuario ---------------------
+path="./imagenes"
 
 def registrar_usuario():
     usuario_info = usuario.get()  # Obetnemos la informacion alamcenada en usuario
@@ -87,6 +88,13 @@ def verificacion_login():
         print("Usuario no encontrado")
         Label(pantalla2, text="Usuario no encontrado", fg="red", font=("Calibri", 11)).pack()
 
+# EN DESARROLLO
+def guardar_datos(path, func):
+    directorio_ppal=os.getcwd()
+    os.chdir(path)
+    ## Ejecutar funcion
+    func
+    os.chdir(directorio_ppal)
 
 # PASO 4--------------------------- Funcion para almacenar el registro facial --------------------------------------
 def registro_facial():
@@ -98,10 +106,14 @@ def registro_facial():
         if cv2.waitKey(1) == 27:  # Cuando oprimamos "Escape" rompe el videoº
              break
      usuario_img = usuario.get()
+     #Cambiar a directorio donde se guardara la imagen
+     directorio_ppal=os.getcwd()
+     os.chdir(path)
      cv2.imwrite(usuario_img + ".jpg", frame)  # Guardamos la ultima caputra del video como imagen y asignamos el nombre del usuario
+     os.chdir(directorio_ppal)
+     print(os.getcwd())
      cap.release()  # Cerramos
      cv2.destroyAllWindows()
-
      usuario_entrada.delete(0, END)  # Limpiamos los text variables
      contra_entrada.delete(0, END)
      Label(pantalla1, text="Registro Facial Exitoso", fg="green", font=("Calibri", 11)).pack()
@@ -120,7 +132,6 @@ def reg_rostro(img, lista_resultados):
                 cv2.imwrite(usuario_img + ".jpg", cara_reg)
                 pyplot.imshow(data[y1:y2, x1:x2])
             pyplot.show()
-
             img = usuario_img + ".jpg"
             pixeles = pyplot.imread(img)
             detector = MTCNN()
@@ -169,7 +180,7 @@ def login_facial():
         if cv2.waitKey(1) == 27:  # Cuando oprimamos "Escape" rompe el video
             break
     usuario_login = verificacion_usuario.get()  # Con esta variable vamos a guardar la foto pero con otro nombre para no sobreescribir
-    cv2.imwrite(usuario_login + "LOG.jpg",
+    cv2.imwrite(path+usuario_login + "LOG.jpg",
                 frame)  # Guardamos la ultima caputra del video como imagen y asignamos el nombre del usuario
     cap.release()  # Cerramos
     cv2.destroyAllWindows()
@@ -180,6 +191,7 @@ def login_facial():
     # ----------------- Funcion para guardar el rostro --------------------------
 
     def log_rostro(img, lista_resultados):
+       
         data = pyplot.imread(img)
         for i in range(len(lista_resultados)):
             x1, y1, ancho, alto = lista_resultados[i]['box']
@@ -188,7 +200,7 @@ def login_facial():
             pyplot.axis('off')
             cara_reg = data[y1:y2, x1:x2]
             cara_reg = cv2.resize(cara_reg, (150, 200), interpolation=cv2.INTER_CUBIC)  # Guardamos la imagen 150x200
-            cv2.imwrite(usuario_login + "LOG.jpg", cara_reg)
+            cv2.imwrite(path+usuario_login + "LOG.jpg", cara_reg)
             return pyplot.imshow(data[y1:y2, x1:x2])
         pyplot.show()
 
@@ -219,7 +231,7 @@ def login_facial():
 
     # ---------------------------- Importamos las imagenes y llamamos la funcion de comparacion ---------------------------------
 
-    im_archivos = os.listdir()  # Vamos a importar la lista de archivos con la libreria os
+    im_archivos = os.listdir(path)  # Vamos a importar la lista de archivos con la libreria os
     if usuario_login + ".jpg" in im_archivos:  # Comparamos los archivos con el que nos interesa
         rostro_reg = cv2.imread(usuario_login + ".jpg", 0)  # Importamos el rostro del registro
         rostro_log = cv2.imread(usuario_login + "LOG.jpg", 0)  # Importamos el rostro del inicio de sesion
