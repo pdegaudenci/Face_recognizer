@@ -7,6 +7,7 @@ from matplotlib import pyplot
 from mtcnn.mtcnn import MTCNN
 import numpy as np
 
+
 # Paso 7------------- Crearemos una funcion que se encargara de registrar el usuario ---------------------
 path = "imagenes"
 
@@ -15,11 +16,8 @@ def crear_fichero_imagenes():
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
     folder_name1 = 'imagenes_LOG'
-    directorio = os.getcwd()
-    os.chdir(folder_name1)
     if not os.path.exists(folder_name1):
             os.makedirs(folder_name1)
-    os.chdir(directorio)
     #img = cv2.imread('image.jpg')
     #cv2.imwrite(os.path.join(folder_name, 'image.jpg'), img)
 def registrar_usuario():
@@ -130,10 +128,10 @@ def registro_facial():
      Label(pantalla1, text="Registro Facial Exitoso", fg="green", font=("Calibri", 11)).pack()
 
         # ----------------- Detectamos el rostro y exportamos los pixeles --------------------------
-def reg_rostro(img, lista_resultados):
-            data = pyplot.imread(img)
-            for i in range(len(lista_resultados)):
-                x1, y1, ancho, alto = lista_resultados[i]['box']
+     """def reg_rostro(img, lista_resultados):
+     #       data = pyplot.imread(img)
+     #       for i in range(len(lista_resultados)):
+     #           x1, y1, ancho, alto = lista_resultados[i]['box']
                 x2, y2 = x1 + ancho, y1 + alto
                 pyplot.subplot(1, len(lista_resultados), i + 1)
                 pyplot.axis('off')
@@ -147,8 +145,8 @@ def reg_rostro(img, lista_resultados):
             pixeles = pyplot.imread(img)
             detector = MTCNN()
             caras = detector.detect_faces(pixeles)
-            reg_rostro(img, caras)
-
+     reg_rostro(img, caras)
+"""
 # PASO 5------------------------Funcion que asignaremos al boton login -------------------------------------------------
 def login():
     global pantalla2
@@ -205,8 +203,10 @@ def login_facial():
     # ----------------- Funcion para guardar el rostro --------------------------
 
     def log_rostro(img, lista_resultados):
-       
+        directorio_ppal=os.getcwd()
+        os.chdir("imagenes_LOG")
         data = pyplot.imread(img)
+        os.chdir(directorio_ppal)
         for i in range(len(lista_resultados)):
             x1, y1, ancho, alto = lista_resultados[i]['box']
             x2, y2 = x1 + ancho, y1 + alto
