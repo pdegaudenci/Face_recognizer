@@ -8,14 +8,22 @@ from mtcnn.mtcnn import MTCNN
 import numpy as np
 
 # Paso 7------------- Crearemos una funcion que se encargara de registrar el usuario ---------------------
-path="./imagenes"
-try:
-  os.stat(path)
-except:
-  os.mkdir(path)
+path = "imagenes"
 
+def crear_fichero_imagenes():
+    folder_name = 'imagenes'
+    if not os.path.exists(folder_name):
+        os.makedirs(folder_name)
+    folder_name1 = 'imagenes_LOG'
+    directorio = os.getcwd()
+    os.chdir(folder_name1)
+    if not os.path.exists(folder_name1):
+            os.makedirs(folder_name1)
+    os.chdir(directorio)
+    #img = cv2.imread('image.jpg')
+    #cv2.imwrite(os.path.join(folder_name, 'image.jpg'), img)
 def registrar_usuario():
-    usuario_info = usuario.get()  # Obetnemos la informacion alamcenada en usuario
+    usuario_info = usuario.get()  # Obtenemos la informacion almacenada en usuario
     contra_info = contra.get()  # Obtenemos la informacion almacenada en contra
 
     archivo = open(usuario_info, "w")  # Abriremos la informacion en modo escritura
@@ -29,7 +37,6 @@ def registrar_usuario():
 
     # Ahora le diremos al usuario que su registro ha sido exitoso
     Label(pantalla1, text="Registro Convencional Exitoso", fg="green", font=("Calibri", 11)).pack()
-
 
 
 # PASO 3------ -----Crearemos una funcion para asignar al boton registro --------------------------------
@@ -83,7 +90,7 @@ def verificacion_login():
         archivo2 = open(log_usuario, "r")  # Abrimos el archivo en modo lectura
         verificacion = archivo2.read().splitlines()  # leera las lineas dentro del archivo ignorando el resto
         if log_contra in verificacion:
-            print("Inicio de sesion exitoso")
+            print("Inicio de sesión exitoso")
             Label(pantalla2, text="Inicio de Sesion Exitoso", fg="green", font=("Calibri", 11)).pack()
         else:
             print("Contraseña incorrecta, ingrese de nuevo")
@@ -107,7 +114,7 @@ def registro_facial():
      while (True):
         ret, frame = cap.read()  # Leemos el video
         cv2.imshow('Registro Facial', frame)  # Mostramos el video en pantalla
-        if cv2.waitKey(1) == 27:  # Cuando oprimamos "Escape" rompe el videoº
+        if cv2.waitKey(1) == 27:  # Cuando oprimamos "Escape" rompe el vídeoº
              break
      usuario_img = usuario.get()
      #Cambiar a directorio donde se guardara la imagen
@@ -184,8 +191,11 @@ def login_facial():
         if cv2.waitKey(1) == 27:  # Cuando oprimamos "Escape" rompe el video
             break
     usuario_login = verificacion_usuario.get()  # Con esta variable vamos a guardar la foto pero con otro nombre para no sobreescribir
+    directorio = os.getcwd()
+    os.chdir("imagenes_LOG")
     cv2.imwrite(usuario_login + "LOG.jpg",
-                frame)  # Guardamos la ultima caputra del video como imagen y asignamos el nombre del usuario
+                frame)  # Guardamos la ultima captura del video como imagen y asignamos el nombre del usuario
+    os.chdir(directorio)
     cap.release()  # Cerramos
     cv2.destroyAllWindows()
 
@@ -204,14 +214,16 @@ def login_facial():
             pyplot.axis('off')
             cara_reg = data[y1:y2, x1:x2]
             cara_reg = cv2.resize(cara_reg, (150, 200), interpolation=cv2.INTER_CUBIC)  # Guardamos la imagen 150x200
-            cv2.imwrite(path+usuario_login + "LOG.jpg", cara_reg)
+            cv2.imwrite(usuario_login + "LOG.jpg", cara_reg)
             return pyplot.imshow(data[y1:y2, x1:x2])
         pyplot.show()
 
     # -------------------------- Detectamos el rostro-------------------------------------------------------
 
+    os.chdir("imagenes_LOG")
     img = usuario_login + "LOG.jpg"
     pixeles = pyplot.imread(img)
+    os.chdir(directorio)
     detector = MTCNN()
     caras = detector.detect_faces(pixeles)
     log_rostro(img, caras)
@@ -240,17 +252,19 @@ def login_facial():
         # os.chdir(path)
         directorio_ppal = os.getcwd()
         os.chdir(path)
-        ## Ejecutar funcion
+        ## Ejecutar función
         rostro_reg = cv2.imread(usuario_login + ".jpg", 0)  # Importamos el rostro del registro
         os.chdir(directorio_ppal)
+        os.chdir("imagenes_LOG")
         rostro_log = cv2.imread(usuario_login + "LOG.jpg", 0)  # Importamos el rostro del inicio de sesion
+        os.chdir(directorio_ppal)
         similitud = orb_sim(rostro_reg, rostro_log)
         if similitud >= 0.94:
-            Label(pantalla2, text="Inicio de Sesion Exitoso", fg="green", font=("Calibri", 11)).pack()
+            Label(pantalla2, text="Inicio de Sesión Exitoso", fg="green", font=("Calibri", 11)).pack()
             print("Bienvenido al sistema usuario: ", usuario_login)
             print("Compatibilidad con la foto del registro: ", similitud)
         else:
-            print("Rostro incorrecto, Cerifique su usuario")
+            print("Rostro incorrecto, Certifique su usuario")
             print("Compatibilidad con la foto del registro: ", similitud)
             Label(pantalla2, text="Incompatibilidad de rostros", fg="red", font=("Calibri", 11)).pack()
     else:
@@ -264,6 +278,7 @@ def login_facial():
 # PASO 2--------------- Funcion de nuestra pantalla principal ------------------------------------------------
 
 def pantalla_principal():
+    crear_fichero_imagenes()
     global pantalla  # Globalizamos la variable para usarla en otras funciones
     pantalla = Tk()
     pantalla.geometry("300x250")  # Asignamos el tamaño de la ventana
