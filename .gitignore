@@ -1,6 +1,7 @@
 *.jpg
 *.jpeg
 p1/
+imagenes_embbeding/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
