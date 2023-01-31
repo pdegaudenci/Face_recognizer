@@ -2,6 +2,7 @@
 *.jpeg
 p1/
 imagenes_embbeding/
+*.deb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

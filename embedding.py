@@ -22,7 +22,8 @@ lista = os.listdir(path)
 print(lista)
 
 os.chdir(path)
-for filename in lista:
+
+def generarembedding(filename):
     pixels = load_img(filename, target_size=(160, 160))
 
 # convertir imagen a array numpy
@@ -51,7 +52,13 @@ for filename in lista:
 # crear un embbeding a partir de las características
     #embedding = features[0]
     embeddings = embedder.embeddings(face)
-    print(embeddings)
-
-
-
+    return embeddings
+#creación del diccionario de referencia
+lista=[]
+for filename in lista:
+    dic={"name":None,"embeddings":None}
+    embedding=generarembedding(filename)
+    name=filename.split(".")[0]
+    dic["name"]=name
+    dic["embeddings"] = embedding
+    lista.append(dic)
