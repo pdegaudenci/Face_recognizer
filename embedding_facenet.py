@@ -11,20 +11,16 @@ from mtcnn.mtcnn import MTCNN
 detector = MTCNN()
 from keras_facenet import FaceNet
 import json
-embedder = FaceNet()
-#Cargar una red neuronal pre-entrenada para la extracción de características:
-#from keras.models import load_model
-#model = load_model("model.h5")
+
 
 
 # cargar imagen
 path = "imagenes_embbeding"
-lista = os.listdir(path)
-print(lista)
 
-os.chdir(path)
-
-def generarembedding(filename):
+#creación del diccionario de referencia
+def generarembedding_facenet(filename, path):
+    os.chdir(path)
+    embedder = FaceNet()
     pixels = load_img(filename, target_size=(160, 160))
 
 # convertir imagen a array numpy
@@ -54,13 +50,20 @@ def generarembedding(filename):
     #embedding = features[0]
     embeddings = embedder.embeddings(face)
     return embeddings
-#creación del diccionario de referencia
-dic={}
-for filename in lista:
-    embedding=generarembedding(filename)
-    name=filename.split(".")[0]
-    dic[name]=embedding.tolist()
 
-tf = open("embeddings.json", "w")
-json.dump(dic,tf)
-tf.close()
+
+# Guardar diccionario de referencia
+def guardar_embedding_facenet(path_input,path_output):
+    directorio_actual= os.getcwd()
+    lista = os.listdir(path_input)
+    dic={}
+    os.chdir(path_input)
+    for filename in lista:
+        embedding=generarembedding_facenet(filename,path_input)
+        name=filename.split(".")[0]
+        dic[name]=embedding.tolist()
+    os.chdir(directorio_actual)
+    os.chdir(path_output)
+    tf = open("embeddings.json", "w")
+    json.dump(dic,tf)
+    tf.close()

@@ -6,6 +6,7 @@ import cv2
 from matplotlib import pyplot
 from mtcnn.mtcnn import MTCNN
 import numpy as np
+from webcam import iniciar_webcam
 
 
 # Paso 7------------- Crearemos una funcion que se encargara de registrar el usuario ---------------------
@@ -20,21 +21,7 @@ def crear_fichero_imagenes():
             os.makedirs(folder_name1)
     #img = cv2.imread('image.jpg')
     #cv2.imwrite(os.path.join(folder_name, 'image.jpg'), img)
-def registrar_usuario():
-    usuario_info = usuario.get()  # Obtenemos la informacion almacenada en usuario
-    contra_info = contra.get()  # Obtenemos la informacion almacenada en contra
 
-    archivo = open(usuario_info, "w")  # Abriremos la informacion en modo escritura
-    archivo.write(usuario_info + "\n")  # escribimos la info
-    archivo.write(contra_info)
-    archivo.close()
-
-    # Limpiaremos los text variable
-    usuario_entrada.delete(0, END)
-    contra_entrada.delete(0, END)
-
-    # Ahora le diremos al usuario que su registro ha sido exitoso
-    Label(pantalla1, text="Registro Convencional Exitoso", fg="green", font=("Calibri", 11)).pack()
 
 
 # PASO 3------ -----Crearemos una funcion para asignar al boton registro --------------------------------
@@ -61,13 +48,7 @@ def registro():
     usuario_entrada = Entry(pantalla1,
                             textvariable=usuario)  # Creamos un text variable para que el usuario ingrese la info
     usuario_entrada.pack()
-    Label(pantalla1, text="Contraseña * ").pack()  # Mostramos en la pantalla 1 la contraseña
-    contra_entrada = Entry(pantalla1,
-                           textvariable=contra)  # Creamos un text variable para que el usuario ingrese la contra
-    contra_entrada.pack()
-    Label(pantalla1, text="").pack()  # Dejamos un espacio para la creacion del boton
-    Button(pantalla1, text="Registro Tradicional", width=15, height=1,
-           command=registrar_usuario).pack()  # Creamos el boton
+    
 
     # ------------ Vamos a crear el boton para hacer el registro facial --------------------
     Label(pantalla1, text="").pack()
@@ -158,8 +139,7 @@ def login():
     pantalla2 = Toplevel(pantalla)
     pantalla2.title("Login")
     pantalla2.geometry("300x250")  # Creamos la ventana
-    Label(pantalla2, text="Login facial: debe de asignar un usuario:").pack()
-    Label(pantalla2, text="Login tradicional: debe asignar usuario y contraseña:").pack()
+    Label(pantalla2, text="Login facial: debe de ingresar un usuario:").pack()
     Label(pantalla2, text="").pack()  # Dejamos un poco de espacio
 
     verificacion_usuario = StringVar()
@@ -169,11 +149,6 @@ def login():
     Label(pantalla2, text="Usuario * ").pack()
     usuario_entrada2 = Entry(pantalla2, textvariable=verificacion_usuario)
     usuario_entrada2.pack()
-    Label(pantalla2, text="Contraseña * ").pack()
-    contra_entrada2 = Entry(pantalla2, textvariable=verificacion_contra)
-    contra_entrada2.pack()
-    Label(pantalla2, text="").pack()
-    Button(pantalla2, text="Inicio de Sesion Tradicional", width=20, height=1, command=verificacion_login).pack()
 
     # ------------ Vamos a crear el boton para hacer el login facial --------------------
     Label(pantalla2, text="").pack()
@@ -271,10 +246,6 @@ def login_facial():
         print("Usuario no encontrado")
         Label(pantalla2, text="Usuario no encontrado", fg="red", font=("Calibri", 11)).pack()
 
-# Paso 7------------- Crearemos una funcion que se encargara de registrar el usuario ---------------------
-
-
-
 # PASO 2--------------- Funcion de nuestra pantalla principal ------------------------------------------------
 
 def pantalla_principal():
@@ -292,7 +263,8 @@ def pantalla_principal():
     Button(text="Iniciar Sesion", height="2", width="30", command=login).pack()
     Label(text="").pack()  # Creamos el espacio entre el primer boton y el segundo boton
     Button(text="Registro", height="2", width="30", command=registro).pack()
-
+    Label(text="").pack()  # Creamos el espacio entre el primer boton y el segundo boton
+    Button(text="Iniciar detección facial", height="2", width="30", command=iniciar_webcam).pack()
     pantalla.mainloop()
 
 

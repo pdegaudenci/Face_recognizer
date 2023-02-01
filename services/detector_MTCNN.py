@@ -388,8 +388,8 @@ def crear_diccionario_referencias(folder_path:str,
     folders = glob.glob(folder_path + "/*")
     embeddings = []
     path_imagenes = os.listdir(folder_path)
+    directorio_actual=os.getcwd()
     os.chdir(folder_path)
-    
     for path_imagen in path_imagenes:
             identidad = path_imagen.split(".")[0]
             logging.info(f'Leyendo imagen: {path_imagen}')
@@ -420,15 +420,15 @@ def crear_diccionario_referencias(folder_path:str,
                 continue
                 
             cara = extraer_caras(imagen, bbox)
-            embedding = calcular_embeddings(cara, encoder=encoder)
+            embedding = calcular_embeddings(cara, encoder=encoder).tolist()
             embeddings.append(embedding)
         ### HAsta aqui for 
             if verbose:
                 print(f"Identidad: {identidad} --- Imágenes referencia: {len(embeddings)}")
             
             embedding_promedio = np.array(embeddings).mean(axis = 0)
-            new_dic_referencia[identidad] = embedding_promedio
-        
+            new_dic_referencia[identidad] = embedding_promedio.tolist()
+    os.chdir(directorio_actual)    
     if dic_referencia is not None:
         dic_referencia.update(new_dic_referencia)
         return dic_referencia
