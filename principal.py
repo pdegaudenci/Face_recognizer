@@ -48,4 +48,4 @@ dict_referencias = crear_diccionario_referencias(
                   )
 pipeline_deteccion_webcam(
     dic_referencia        = dict_referencias,
-   threshold_similaridad = 0.4, )
+   threshold_similaridad = 0.2 )

@@ -322,13 +322,15 @@ def identificar_caras(embeddings: np.ndarray,
                       threshold_similaridad: float = 0.6) -> list:
     
     identidades = []
-    print(embeddings[0].shape)
+        
     for i in range(embeddings.shape[0]):
         # Se calcula la similitud con cada uno de los perfiles de referencia.
         similitudes = {}
         for key, value in dic_referencia.items():
-            similitudes[key] = face_recognition.face_distance(embeddings[i], value)
-            
+            print(value[0].shape)
+            print(embeddings[i].shape)
+            similitudes[key] = 1 - cosine(embeddings[i], value[0])
+        
         # Se identifica la persona de mayor similitud.
         identidad = max(similitudes, key=similitudes.get)
         # Si la similitud < threshold_similaridad, se etiqueta como None
