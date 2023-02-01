@@ -10,6 +10,7 @@ import os
 from mtcnn.mtcnn import MTCNN
 detector = MTCNN()
 from keras_facenet import FaceNet
+import json
 embedder = FaceNet()
 #Cargar una red neuronal pre-entrenada para la extracción de características:
 #from keras.models import load_model
@@ -54,11 +55,12 @@ def generarembedding(filename):
     embeddings = embedder.embeddings(face)
     return embeddings
 #creación del diccionario de referencia
-lista=[]
+dic={}
 for filename in lista:
-    dic={"name":None,"embeddings":None}
     embedding=generarembedding(filename)
     name=filename.split(".")[0]
-    dic["name"]=name
-    dic["embeddings"] = embedding
-    lista.append(dic)
+    dic[name]=embedding.tolist()
+
+tf = open("embeddings.json", "w")
+json.dump(dic,tf)
+tf.close()
