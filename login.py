@@ -1,4 +1,4 @@
-# PASO 1--------------------------------------Importamos librerias--------------------------------------------
+# PASO 1--------------------------------------Importamos librerías--------------------------------------------
 
 from tkinter import *
 import os
@@ -9,7 +9,7 @@ import numpy as np
 from webcam import iniciar_webcam
 
 
-# Paso 7------------- Crearemos una funcion que se encargara de registrar el usuario ---------------------
+# Paso 2------------- Creamos una función que crear ficheros para guardar imágenes ---------------------
 path = "imagenes"
 
 def crear_fichero_imagenes():
@@ -19,12 +19,8 @@ def crear_fichero_imagenes():
     folder_name1 = 'imagenes_LOG'
     if not os.path.exists(folder_name1):
             os.makedirs(folder_name1)
-    #img = cv2.imread('image.jpg')
-    #cv2.imwrite(os.path.join(folder_name, 'image.jpg'), img)
 
-
-
-# PASO 3------ -----Crearemos una funcion para asignar al boton registro --------------------------------
+# PASO 3-----------Crearemos una funcion para asignar al boton registro --------------------------------
 def registro():
     global usuario
     global contra  # Globalizamos las variables para usarlas en otras funciones
@@ -105,10 +101,8 @@ def registro_facial():
      cap.release()  # Cerramos
      cv2.destroyAllWindows()
      usuario_entrada.delete(0, END)  # Limpiamos los text variables
-     contra_entrada.delete(0, END)
-     Label(pantalla1, text="Registro Facial Exitoso", fg="green", font=("Calibri", 11)).pack()
-
-        # ----------------- Detectamos el rostro y exportamos los pixeles --------------------------
+     return True
+# ----------------- Detectamos el rostro y exportamos los pixeles --------------------------
      """def reg_rostro(img, lista_resultados):
      #       data = pyplot.imread(img)
      #       for i in range(len(lista_resultados)):
