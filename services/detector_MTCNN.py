@@ -34,7 +34,7 @@ from urllib.request import urlretrieve
 from tqdm import tqdm 
 from scipy.spatial.distance import euclidean
 from scipy.spatial.distance import cosine
-import face_recognition
+#import face_recognition
 
 
 
@@ -453,6 +453,7 @@ def pipeline_deteccion_webcam(dic_referencia: dict,
     
 
     capture = cv2.VideoCapture(0)
+
     frame_exist = True
 
     while(frame_exist):

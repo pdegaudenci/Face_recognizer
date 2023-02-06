@@ -2,16 +2,55 @@
 # Importamos librerías
 from tkinter import *
 import os
-import cv2
-from matplotlib import pyplot
-from mtcnn.mtcnn import MTCNN
-import numpy as np
-from webcam import iniciar_webcam
-import importlib
-from login import login, registro_facial, login_facial
 
-# Paso 2------------- Creamos una función que crear ficheros para guardar imágenes ---------------------
-path = "imagenes"
+
+
+import importlib
+
+loader_login=importlib.import_module('.login',package='services')
+loader_webcam=importlib.import_module('.webcam',package='services')
+# PASO 5------------------------Funcion que asignaremos al boton login -------------------------------------------------
+def login():
+    global pantalla2
+    global verificacion_usuario
+    global usuario_entrada2
+    global contra_entrada2
+
+    pantalla2 = Toplevel(pantalla)
+    pantalla2.title("Login")
+    pantalla2.geometry("300x250")  # Creamos la ventana
+    Label(pantalla2, text="Login facial: debe de ingresar un usuario:").pack()
+    Label(pantalla2, text="").pack()  # Dejamos un poco de espacio
+
+    verificacion_usuario = StringVar()
+
+
+    # ---------------------------------- Ingresamos los datos --------------------------
+    Label(pantalla2, text="Usuario * ").pack()
+    usuario_entrada2 = Entry(pantalla2, textvariable=verificacion_usuario)
+    usuario_entrada2.pack()
+
+    # ------------ Vamos a crear el boton para hacer el login facial --------------------
+    Label(pantalla2, text="").pack()
+    Button(pantalla2, text="Inicio de Sesion Facial", width=20, height=1, command=verificar_usuario).pack()
+
+def verificar_usuario():
+    usuario_login,similitud=loader_login.login_facial(verificacion_usuario,pantalla2)
+    if usuario_login!=None:
+        Label(pantalla2, text="Inicio de Sesión Exitoso", fg="green", font=("Calibri", 11)).pack()
+        print("Bienvenido al sistema usuario: ", usuario_login)
+        print("Compatibilidad con la foto del registro: ", similitud)
+    elif similitud!=None:
+        print("Rostro incorrecto, Certifique su usuario")
+        print("Compatibilidad con la foto del registro: ", similitud)
+        Label(pantalla2, text="Incompatibilidad de rostros", fg="red", font=("Calibri", 11)).pack()
+    else:
+        print("Usuario no encontrado")
+        Label(pantalla2, text="Usuario no encontrado", fg="red", font=("Calibri", 11)).pack()
+    usuario_entrada2.delete(0, END)  # Limpiamos los text variables
+
+# ------------ Creamos una función que crear ficheros para guardar imágenes ---------------------
+path = "../imagenes"
 
 def crear_fichero_imagenes():
     folder_name = 'imagenes'
@@ -43,38 +82,15 @@ def registro():
 
     # ------------ Vamos a crear el boton para hacer el registro facial --------------------
     Label(pantalla1, text="").pack()
-    Button(pantalla1, text="Registro Facial", width=15, height=1, command=registro_facial_interfaz()).pack()
+    Button(pantalla1, text="Registro Facial", width=15, height=1, command=registro_facial_interfaz).pack()
 
 
 def registro_facial_interfaz():
-    if registro_facial():
+    if loader_login.registro_facial(usuario):
+        usuario_entrada.delete(0, END)  # Limpiamos los text variables
         Label(pantalla1, text="Registro Facial Exitoso", fg="green", font=("Calibri", 11)).pack()
 
-# PASO 5------------------------Funcion que asignaremos al boton login -------------------------------------------------
-def login():
-    global pantalla2
-    global verificacion_usuario
-    global verificacion_contra
-    global usuario_entrada2
-    global contra_entrada2
 
-    pantalla2 = Toplevel(pantalla)
-    pantalla2.title("Login")
-    pantalla2.geometry("300x250")  # Creamos la ventana
-    Label(pantalla2, text="Login facial: debe de ingresar un usuario:").pack()
-    Label(pantalla2, text="").pack()  # Dejamos un poco de espacio
-
-    verificacion_usuario = StringVar()
-    verificacion_contra = StringVar()
-
-    # ---------------------------------- Ingresamos los datos --------------------------
-    Label(pantalla2, text="Usuario * ").pack()
-    usuario_entrada2 = Entry(pantalla2, textvariable=verificacion_usuario)
-    usuario_entrada2.pack()
-
-    # ------------ Vamos a crear el boton para hacer el login facial --------------------
-    Label(pantalla2, text="").pack()
-    Button(pantalla2, text="Inicio de Sesion Facial", width=20, height=1, command=login_facial).pack()
 
 # PASO 2--------------- Funcion de nuestra pantalla principal ------------------------------------------------
 
@@ -94,7 +110,7 @@ def pantalla_principal():
     Label(text="").pack()  # Creamos el espacio entre el primer boton y el segundo boton
     Button(text="Registro", height="2", width="30", command=registro).pack()
     Label(text="").pack()  # Creamos el espacio entre el primer boton y el segundo boton
-    Button(text="Iniciar detección facial", height="2", width="30", command=iniciar_webcam).pack()
+    Button(text="Iniciar detección facial", height="2", width="30", command=loader_webcam.iniciar_webcam).pack()
     pantalla.mainloop()
 
 
