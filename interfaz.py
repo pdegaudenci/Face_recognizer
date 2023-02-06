@@ -8,7 +8,7 @@ from mtcnn.mtcnn import MTCNN
 import numpy as np
 from webcam import iniciar_webcam
 import importlib
-from login import login, registro_facial
+from login import login, registro_facial, login_facial
 
 # Paso 2------------- Creamos una función que crear ficheros para guardar imágenes ---------------------
 path = "imagenes"
