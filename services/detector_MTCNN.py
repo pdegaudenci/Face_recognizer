@@ -226,11 +226,20 @@ def mostrar_bboxes_cv2(imagen: Union[PIL.Image.Image, np.ndarray],
                 cv2.putText(
                     img       = imagen, 
                     text      = identidades[i], 
-                    org       = (bbox[0], bbox[1]-10), 
+                    org       = (bbox[0], bbox[1]-30),
                     fontFace  = cv2.FONT_HERSHEY_SIMPLEX, 
                     fontScale = 1e-3 * imagen.shape[0],
                     color     = (0,255,0),
                     thickness = 2
+                )
+                cv2.putText(
+                    img=imagen,
+                    text="ACCESO PERMITIDO",
+                    org=(bbox[0], bbox[1] -10),
+                    fontFace=cv2.FONT_HERSHEY_SIMPLEX,
+                    fontScale=1e-3 * imagen.shape[0],
+                    color=(0, 255, 0),
+                    thickness=2
                 )
             else:
                 cv2.rectangle(
@@ -240,7 +249,16 @@ def mostrar_bboxes_cv2(imagen: Union[PIL.Image.Image, np.ndarray],
                     color     = (255, 0, 0),
                     thickness = 2
                 )
-        
+                cv2.putText(
+                    img=imagen,
+                    text="ACCESO DENEGADO",
+                    org=(bbox[0], bbox[1] -10),
+                    fontFace=cv2.FONT_HERSHEY_SIMPLEX,
+                    fontScale=1e-3 * imagen.shape[0],
+                    color= (255, 0, 0),
+                    thickness=2
+                )
+
     if device is None:
         return imagen
     else:
@@ -507,7 +525,7 @@ def pipeline_deteccion_webcam(dic_referencia: dict,
                                 device = output_device
                              )
             
-        if cv2.waitKey(1) == 27: 
+        if cv2.waitKey(5) == 27:
             break  # esc para cerrar la ventana
 
     capture.release()
