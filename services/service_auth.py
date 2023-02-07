@@ -1,4 +1,4 @@
-# PASO 1--------------------------------------Importamos librerías--------------------------------------------
+# --------------------------------------Importamos librerías--------------------------------------------
 
 from tkinter import *
 import os
@@ -9,22 +9,30 @@ from mtcnn.mtcnn import MTCNN
 
 
 
-path = "./imagenes"
 
-# PASO 4--------------------------- Funcion para almacenar el registro facial --------------------------------------
+# VAriable que contiene ruta de la carpeta donde se guardarán las imagenes resultantes del login facial
+path = "./imagenes"
+SIMILITUD_BASE=0.90
+
+# --------------------------- Metodo que abre la camara para realiar captura de rostro y guarda imagen en carpeta correspondiente--------------------------------------
 def registro_facial(usuario):
-     # Vamos a capturar el rostro
-     cap = cv2.VideoCapture(0)  # Elegimos la camara con la que vamos a hacer la deteccion
+     # Elegimos la camara con la que vamos a hacer la deteccion
+     cap = cv2.VideoCapture(0) 
+
      while (True):
-        ret, frame = cap.read()  # Leemos el video
-        cv2.imshow('Registro Facial', frame)  # Mostramos el video en pantalla
-        if cv2.waitKey(1) == 27:  # Cuando oprimamos "Escape" rompe el vídeoº
+        # LEctura de frames de la camara
+        ret, frame = cap.read()  
+         # Mostramos el video en pantalla
+        cv2.imshow('Registro Facial', frame) 
+        # Tecla Escpame para salir y hacer captura
+        if cv2.waitKey(1) == 27:  
              break
      usuario_img = usuario.get()
      #Cambiar a directorio donde se guardara la imagen
      directorio_ppal=os.getcwd()
      os.chdir(path)
-     cv2.imwrite(usuario_img + ".jpg", frame)  # Guardamos la ultima caputra del video como imagen y asignamos el nombre del usuario
+     # Guardamos la ultima caputra del video como imagen y asignamos el nombre del usuario
+     cv2.imwrite(usuario_img + ".jpg", frame)  
      os.chdir(directorio_ppal)
      print(os.getcwd())
      cap.release()  # Cerramos
@@ -33,7 +41,8 @@ def registro_facial(usuario):
      return True
 
 
-# PASO 6-----------Funcion para el Login Facial --------------------------------------------------------
+# ---------- Metodo para realizar login facial , es decir, capturar imagen de la persona
+# , guardarla y compararla con las imagenes alamacenadas correspondiente a usuarios registradas --------------------------------------------------------
 def login_facial(verificacion_usuario,pantalla):
     # ------------------------------Vamos a capturar el rostro-----------------------------------------------------
     global pantalla2
@@ -85,7 +94,7 @@ def login_facial(verificacion_usuario,pantalla):
     caras = detector.detect_faces(pixeles)
     log_rostro(img, caras)
 
-    # -------------------------- Funcion para comparar los rostros --------------------------------------------
+    # -------------------------- Funcion para comparar similitud de los rostros usando la libreria opencv--------------------------------------------
     def orb_sim(img1, img2):
         orb = cv2.ORB_create()  # Creamos el objeto de comparacion
 
@@ -116,7 +125,8 @@ def login_facial(verificacion_usuario,pantalla):
         rostro_log = cv2.imread(usuario_login + "LOG.jpg", 0)  # Importamos el rostro del inicio de sesion
         os.chdir(directorio_ppal)
         similitud = orb_sim(rostro_reg, rostro_log)
-        if similitud >= 0.90:
+        # Defino que la similutud debe ser mayor a 0,90
+        if similitud >= SIMILITUD_BASE:
             return usuario_login,similitud
         else:
            return None,similitud
