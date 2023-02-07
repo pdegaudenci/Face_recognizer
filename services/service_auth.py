@@ -8,25 +8,8 @@ from mtcnn.mtcnn import MTCNN
 
 
 
-# Paso 2------------- Creamos una función que crear ficheros para guardar imágenes ---------------------
-path = "../imagenes"
 
-def crear_fichero_imagenes():
-    folder_name = 'imagenes'
-    if not os.path.exists(folder_name):
-        os.makedirs(folder_name)
-    folder_name1 = 'imagenes_LOG'
-    if not os.path.exists(folder_name1):
-            os.makedirs(folder_name1)
-
-#
-# EN DESARROLLO
-def guardar_datos(path, func):
-    directorio_ppal=os.getcwd()
-    os.chdir(path)
-    ## Ejecutar funcion
-    func
-    os.chdir(directorio_ppal)
+path = "./imagenes"
 
 # PASO 4--------------------------- Funcion para almacenar el registro facial --------------------------------------
 def registro_facial(usuario):
@@ -63,7 +46,7 @@ def login_facial(verificacion_usuario,pantalla):
             break
     usuario_login = verificacion_usuario.get()  # Con esta variable vamos a guardar la foto pero con otro nombre para no sobreescribir
     directorio = os.getcwd()
-    os.chdir("../imagenes_LOG")
+    os.chdir("./imagenes_LOG")
     cv2.imwrite(usuario_login + "LOG.jpg",
                 frame)  # Guardamos la ultima captura del video como imagen y asignamos el nombre del usuario
     os.chdir(directorio)
@@ -76,7 +59,7 @@ def login_facial(verificacion_usuario,pantalla):
 
     def log_rostro(img, lista_resultados):
         directorio_ppal=os.getcwd()
-        os.chdir("../imagenes_LOG")
+        os.chdir("./imagenes_LOG")
         data = pyplot.imread(img)
         os.chdir(directorio_ppal)
         for i in range(len(lista_resultados)):
@@ -86,7 +69,7 @@ def login_facial(verificacion_usuario,pantalla):
             pyplot.axis('off')
             cara_reg = data[y1:y2, x1:x2]
             cara_reg = cv2.resize(cara_reg, (150, 200), interpolation=cv2.INTER_CUBIC)  # Guardamos la imagen 150x200
-            os.chdir("../imagenes_LOG")
+            os.chdir("./imagenes_LOG")
             cv2.imwrite(usuario_login + "LOG.jpg", cara_reg)
             os.chdir(directorio_ppal)
             return pyplot.imshow(data[y1:y2, x1:x2])
@@ -94,7 +77,7 @@ def login_facial(verificacion_usuario,pantalla):
 
     # -------------------------- Detectamos el rostro-------------------------------------------------------
 
-    os.chdir("../imagenes_LOG")
+    os.chdir("./imagenes_LOG")
     img = usuario_login + "LOG.jpg"
     pixeles = pyplot.imread(img)
     os.chdir(directorio)
@@ -129,7 +112,7 @@ def login_facial(verificacion_usuario,pantalla):
         ## Ejecutar función
         rostro_reg = cv2.imread(usuario_login + ".jpg", 0)  # Importamos el rostro del registro
         os.chdir(directorio_ppal)
-        os.chdir("../imagenes_LOG")
+        os.chdir("./imagenes_LOG")
         rostro_log = cv2.imread(usuario_login + "LOG.jpg", 0)  # Importamos el rostro del inicio de sesion
         os.chdir(directorio_ppal)
         similitud = orb_sim(rostro_reg, rostro_log)

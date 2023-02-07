@@ -7,7 +7,7 @@ import os
 
 import importlib
 
-loader_login=importlib.import_module('.login',package='services')
+loader_service_auth=importlib.import_module('.service_auth',package='services')
 loader_webcam=importlib.import_module('.webcam',package='services')
 # PASO 5------------------------Funcion que asignaremos al boton login -------------------------------------------------
 def login():
@@ -35,7 +35,7 @@ def login():
     Button(pantalla2, text="Inicio de Sesion Facial", width=20, height=1, command=verificar_usuario).pack()
 
 def verificar_usuario():
-    usuario_login,similitud=loader_login.login_facial(verificacion_usuario,pantalla2)
+    usuario_login,similitud=loader_service_auth.login_facial(verificacion_usuario,pantalla2)
     if usuario_login!=None:
         Label(pantalla2, text="Inicio de Sesión Exitoso", fg="green", font=("Calibri", 11)).pack()
         print("Bienvenido al sistema usuario: ", usuario_login)
@@ -50,7 +50,7 @@ def verificar_usuario():
     usuario_entrada2.delete(0, END)  # Limpiamos los text variables
 
 # ------------ Creamos una función que crear ficheros para guardar imágenes ---------------------
-path = "../imagenes"
+path = "./imagenes"
 
 def crear_fichero_imagenes():
     folder_name = 'imagenes'
@@ -59,6 +59,7 @@ def crear_fichero_imagenes():
     folder_name1 = 'imagenes_LOG'
     if not os.path.exists(folder_name1):
             os.makedirs(folder_name1)
+
 
 def registro():
     global usuario
@@ -86,7 +87,7 @@ def registro():
 
 
 def registro_facial_interfaz():
-    if loader_login.registro_facial(usuario):
+    if loader_service_auth.registro_facial(usuario):
         usuario_entrada.delete(0, END)  # Limpiamos los text variables
         Label(pantalla1, text="Registro Facial Exitoso", fg="green", font=("Calibri", 11)).pack()
 
