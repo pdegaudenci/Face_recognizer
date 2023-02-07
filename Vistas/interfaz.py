@@ -2,38 +2,49 @@
 # Importamos librerías
 from tkinter import *
 import os
-
-
-
 import importlib
 
+
+#-------------------------------------------------------------------------------------------
+# 
+#                   IMPORTACION DE PAQUETES Y SUBMODULOS DE LA APLICACION
+# -------------------------------------------------------------------------------------------
 loader_service_auth=importlib.import_module('.service_auth',package='services')
 loader_webcam=importlib.import_module('.webcam',package='services')
-# PASO 5------------------------Funcion que asignaremos al boton login -------------------------------------------------
+
+#-------------------------------------------------------------------------------------------
+# 
+#                   DEFINICION DE METODOS DE LA INTERFAZ GRAFICA CONSTRUIDA CON TKINTER
+# -------------------------------------------------------------------------------------------
+
+
 def login():
+    #Declaracion de variables globales que seran accesibles por el resto de los metodos de este submodulo
     global pantalla2
     global verificacion_usuario
     global usuario_entrada2
-    global contra_entrada2
-
+    
+    # Creacion pantalla login y atributos de configuracion
     pantalla2 = Toplevel(pantalla)
-    pantalla2.title("Login")
-    pantalla2.geometry("300x250")  # Creamos la ventana
+    pantalla2.title("Login facial")
+    # Asignamos el tamaño de la ventana
+    pantalla2.geometry("300x250")  
     Label(pantalla2, text="Login facial: debe de ingresar un usuario:").pack()
     Label(pantalla2, text="").pack()  # Dejamos un poco de espacio
 
     verificacion_usuario = StringVar()
 
 
-    # ---------------------------------- Ingresamos los datos --------------------------
+    # ---------------------------------- InputText para que usuario ingrese datos --------------------------
     Label(pantalla2, text="Usuario * ").pack()
     usuario_entrada2 = Entry(pantalla2, textvariable=verificacion_usuario)
     usuario_entrada2.pack()
 
-    # ------------ Vamos a crear el boton para hacer el login facial --------------------
+    # ------------ Boton para hacer el login facial --------------------
     Label(pantalla2, text="").pack()
     Button(pantalla2, text="Inicio de Sesion Facial", width=20, height=1, command=verificar_usuario).pack()
 
+# Metodo que invoca a metodo login_facial del submodulo de auth_service y en funcion de su retorno, mostrara elemento visual de tipo Label con diferente contenido
 def verificar_usuario():
     usuario_login,similitud=loader_service_auth.login_facial(verificacion_usuario,pantalla2)
     if usuario_login!=None:
@@ -60,18 +71,16 @@ def crear_fichero_imagenes():
     if not os.path.exists(folder_name1):
             os.makedirs(folder_name1)
 
-
+# Creacion de pantalla de registro
 def registro():
     global usuario
-    global contra  # Globalizamos las variables para usarlas en otras funciones
     global usuario_entrada
     global pantalla1
     pantalla1 = Toplevel(pantalla)  # Esta pantalla es de un nivel superior a la principal
     pantalla1.title("Registro")
-    pantalla1.geometry("300x250")  # Asignamos el tamaño de la ventana
+    pantalla1.geometry("300x250")  
 
-    # --------- Empezaremos a crear las entradas ----------------------------------------
-
+    # Variable que almacena usuario ingresado
     usuario = StringVar()
 
     Label(pantalla1, text="Registro facial: debe de asignar un usuario:").pack()
@@ -81,30 +90,34 @@ def registro():
                             textvariable=usuario)  # Creamos un text variable para que el usuario ingrese la info
     usuario_entrada.pack()
 
-    # ------------ Vamos a crear el boton para hacer el registro facial --------------------
+    # ------------ Boton que invoca a funcion registro_facial_interfaz --------------------
     Label(pantalla1, text="").pack()
     Button(pantalla1, text="Registro Facial", width=15, height=1, command=registro_facial_interfaz).pack()
 
 
+# Metodo que invoca a a metodo resgistro facial del submodulo service_auth, y en funcion del resultado muestra un label 
 def registro_facial_interfaz():
     if loader_service_auth.registro_facial(usuario):
         usuario_entrada.delete(0, END)  # Limpiamos los text variables
         Label(pantalla1, text="Registro Facial Exitoso", fg="green", font=("Calibri", 11)).pack()
+    else:
+        Label(pantalla1, text="Registro Facial -erroneo", fg="red", font=("Calibri", 11)).pack()
 
 
 
-# PASO 2--------------- Funcion de nuestra pantalla principal ------------------------------------------------
+# --------------- DEclaracion de la pantalla principal , que dará acceso a todas las funcionalidades de la aplicacion ------------------------------------------------
 
 def pantalla_principal():
     crear_fichero_imagenes()
-    global pantalla  # Globalizamos la variable para usarla en otras funciones
+    # Globalizamos la variable para usarla en otras funciones
+    global pantalla  
     pantalla = Tk()
     pantalla.geometry("300x250")  # Asignamos el tamaño de la ventana
     pantalla.title("FacialRecognitionF5")  # Asignamos el titulo de la pantalla
     Label(text="Login Inteligente", bg="gray", width="300", height="2",
           font=("Verdana", 13)).pack()  # Asignamos caracteristicas de la ventana
 
-    # ------------------------- Vamos a Crear los Botones ------------------------------------------------------
+    # -------------------------  Botones , que al ejecutarse un evento click invocarán a las distintas funcionalidades del programa ------------------------------------------------------
 
     Label(text="").pack()  # Creamos el espacio entre el titulo y el primer boton
     Button(text="Iniciar Sesion", height="2", width="30", command=login).pack()
