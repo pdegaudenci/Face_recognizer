@@ -246,7 +246,7 @@ def mostrar_bboxes_cv2(imagen: Union[PIL.Image.Image, np.ndarray],
     else:
         cv2.imshow(device, cv2.cvtColor(imagen, cv2.COLOR_BGR2RGB))
         if cv2.waitKey(1) == 27: 
-            brcv2.destroyAllWindows()  # esc para cerrar la ventana
+            cv2.destroyAllWindows()  # esc para cerrar la ventana
         
         
 def extraer_caras(imagen: Union[PIL.Image.Image, np.ndarray],
@@ -366,7 +366,7 @@ def crear_diccionario_referencias(folder_path:str,
     
     
     if detector is None:
-        print('Iniciando detector MTCC')
+        print('Iniciando detector MTCNN')
         detector = MTCNN(
                         keep_all      = False,
                         post_process  = False,
