@@ -3,10 +3,15 @@ from PIL import Image
 import cv2
 import matplotlib.pyplot as plt
 import torch
+import numpy as np
+import facenet_pytorch
+from typing import Union, Dict
+from PIL import Image
 from facenet_pytorch import MTCNN
-import numpy as np
-import cv2
-import numpy as np
+from facenet_pytorch import InceptionResnetV1
+from tqdm import tqdm 
+from scipy.spatial.distance import euclidean
+from scipy.spatial.distance import cosine
 import os
 import imutils
 from tkinter import *
@@ -14,10 +19,6 @@ from PIL import Image
 from PIL import ImageTk
 from imutils.video import VideoStream
 import time
-import numpy as np
-import cv2
-import matplotlib.pyplot as plt
-import torch
 import warnings
 import typing
 import logging
@@ -25,15 +26,7 @@ import os
 import platform
 import glob
 import PIL
-import facenet_pytorch
-from typing import Union, Dict
-from PIL import Image
-from facenet_pytorch import MTCNN
-from facenet_pytorch import InceptionResnetV1
-from urllib.request import urlretrieve
-from tqdm import tqdm 
-from scipy.spatial.distance import euclidean
-from scipy.spatial.distance import cosine
+
 #import face_recognition
 
 
@@ -524,8 +517,8 @@ def pipeline_deteccion_webcam(dic_referencia: dict,
                                 identidades = identidades,
                                 device = output_device
                              )
-            
-        if cv2.waitKey(5) == 27:
+        
+        if cv2.waitKey(5) == 27 or not cv2.getWindowProperty(output_device, cv2.WND_PROP_VISIBLE):
             break  # esc para cerrar la ventana
 
     capture.release()
