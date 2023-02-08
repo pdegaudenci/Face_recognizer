@@ -8,7 +8,7 @@ Nuestro equipo ha trabajado en diferentes proyectos de Inteligencia Artificial, 
 Buscamos innovación y por ello brindamos soluciones con software que desarrollamos exclusivamente para cada cliente, buscando siempre que su implementación sea la más fácil y rentable posible.
 
 # Descripción del proyecto 
-Factoría F5 nos ha pedido al equipo de Inteligencia Artificial desarrollar un software de reconocimiento facial para controlar la entrada de la fiesta que están organizando para sus trabajadores. El cuál hemos denominado: *F5Recognition*.
+Factoría F5 nos ha pedido al equipo de Inteligencia Artificial desarrollar un software de reconocimiento facial para controlar la entrada de la fiesta que están organizando para sus trabajadores. El cuál hemos denominado: **F5Recognition**.
 
 # :mechanical_arm:Estado del proyecto
 :construction: Proyecto en construcción :construction:
@@ -17,8 +17,8 @@ Factoría F5 nos ha pedido al equipo de Inteligencia Artificial desarrollar un s
 
 ## :hammer:Funcionalidades del proyecto
 
-- `Funcionalidad 1`: registra facial de todos los invitados e invitadas a la fiesta de  F5.
-- `Funcionalidad 2`: login facial para reconocer a los invitados de F5 y permitirles la entrada.
+- `Funcionalidad 1`: registro facial de todos los invitados e invitadas a la fiesta de  F5.
+- `Funcionalidad 2`: login facial para reconocer a los invitados e invitadas de F5 y permitirles la entrada.
 - `Funcionalidad 3`: reconocimiento facial en tiempo real.
 
 ## 📁 Acceso al proyecto
@@ -47,7 +47,8 @@ python3 main.py
    - **Presentación:** Canva (https://www.canva.com/design/DAFZ5KQejhI/0p_9DZry9B3d4tTVH8OMtQ/edit) 
 
 
-## Autores![equipo](https://user-images.githubusercontent.com/108665441/217483671-7832066e-e9ff-4156-ab51-f97c6930b749.png)
+## Autores
+![equipo](https://user-images.githubusercontent.com/108665441/217483671-7832066e-e9ff-4156-ab51-f97c6930b749.png)
 
 ## :mailbox:Contacta con nosotros:
 - Discord:https://discord.gg/7pDFqxpR
