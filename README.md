@@ -4,7 +4,7 @@
 </h1>
 
 # CVSolutions 
-Nuestro equipo ha trabajado en diferentes proyectos de Inteligencia Artificial, especializándonod en Computer Vision con ML y DL. 
+Nuestro equipo ha trabajado en diferentes proyectos de Inteligencia Artificial, especializándonos en Computer Vision con ML y DL. 
 Buscamos innovación y por ello brindamos soluciones con software que desarrollamos exclusivamente para cada cliente, buscando siempre que su implementación sea la más fácil y rentable posible.
 
 # Descripción del proyecto 
