@@ -3,12 +3,12 @@
   <img align="center" width="300" height="300" src="https://user-images.githubusercontent.com/108665441/217483255-1d0f97e5-25b4-4d7b-b6f6-8bbb0057a432.png">
 </h1>
 
-# CVSolutions F5Recognition
-Nuestro equipo ha trabajado en diferentes proyectos de Inteligencia Artificial, especializándose en Computer Vision con ML y DL. 
+# CVSolutions 
+Nuestro equipo ha trabajado en diferentes proyectos de Inteligencia Artificial, especializándonod en Computer Vision con ML y DL. 
 Buscamos innovación y por ello brindamos soluciones con software que desarrollamos exclusivamente para cada cliente, buscando siempre que su implementación sea la más fácil y rentable posible.
 
 # Descripción del proyecto 
-Factoría F5 nos ha pedido al equipo de Inteligencia Artificial desarrollar un software de reconocimiento facial para controlar la entrada de la fiesta que están organizando para sus trabajadores. El cuál hemos denominado: **F5Recognition**.
+Factoría F5 nos ha pedido desarrollar un software de reconocimiento facial para controlar la entrada de la fiesta que están organizando para sus trabajadores. El cuál hemos denominado: **F5Recognition**.
 
 # :mechanical_arm:Estado del proyecto
 :construction: Proyecto en construcción :construction:
