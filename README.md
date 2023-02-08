@@ -1,6 +1,6 @@
 <h1 align="center">
-  <p align="left">Proyecto NLP</p>
-  <img align="center" width="300" height="300" src="https://user-images.githubusercontent.com/108665291/207138055-87f92d1c-3810-42bf-8f98-148f847e9a87.png">
+  <p align="left">Proyecto de Computer Vision: F5Recognition</p>
+  <img align="center" width="300" height="300" src="https://user-images.githubusercontent.com/108665441/217483255-1d0f97e5-25b4-4d7b-b6f6-8bbb0057a432.png">
 </h1>
 
 # Proyecto Computer Vision Factoría F5
@@ -15,7 +15,7 @@ Factoría F5 nos ha pedido al equipo de Inteligencia Artificial desarrollar un s
 :construction: Proyecto en construcción :construction:
 
 *Siempre intentamos innovar y mejorar nuestros algoritmos !*
-![imagen](https://user-images.githubusercontent.com/108665291/207285962-ecf1c7d2-676b-46c1-977f-79020e29513e.png)
+![imagen](https://user-images.githubusercontent.com/108665441/217483671-7832066e-e9ff-4156-ab51-f97c6930b749.png)
 
 ## :hammer:Funcionalidades del proyecto
 
