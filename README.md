@@ -33,11 +33,11 @@ Versión 2.0 ya en desarrollo.
 ```
 conda create -n nombreEntorno
 ```
-2. Dentro de este entorno debes instalar todas las librerías usadas, lo puedes hacer desde el archivo:
+2. Dentro de este entorno debes instalar todas las librerías usadas con la siguiente línea de comando:
 ```
-requirements.txt
+pip install requirements.txt
 ```
-3. Desde la terminal, situate en la carpeta que contiene los archivos y desde allí ejecute:
+3. Situate en la carpeta que contiene los archivos y desde allí ejecute:
 ```
 python3 main.py
 ```
@@ -54,4 +54,4 @@ python3 main.py
 
 ## :mailbox:Contacta con nosotros:
 - Discord:https://discord.gg/7pDFqxpR
-- Email: hello@cvsolutions.com
+- Email: hello@cvsolutions.es
