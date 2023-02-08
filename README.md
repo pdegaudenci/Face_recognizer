@@ -5,7 +5,7 @@
 
 # CVSolutions 
 Nuestro equipo ha trabajado en diferentes proyectos de Inteligencia Artificial, especializándonos en Computer Vision con ML y DL. 
-Buscamos innovación y por ello brindamos soluciones con software que desarrollamos exclusivamente para cada cliente, buscando siempre que su implementación sea la más fácil y rentable posible.
+Buscamos innovación y por ello brindamos soluciones con softwares que desarrollamos exclusivamente para cada cliente, buscando siempre que su implementación sea la más fácil y rentable posible.
 
 # Descripción del proyecto 
 Factoría F5 nos ha pedido desarrollar un software de reconocimiento facial para controlar la entrada de la fiesta que están organizando para sus trabajadores. El cuál hemos denominado: **F5Recognition**.
@@ -33,7 +33,7 @@ Versión 2.0 ya en desarrollo.
 ```
 conda create -n nombreEntorno
 ```
-2. Dentro de este entorno debes instalar todas las librerías usadas con la siguiente línea de comando:
+3. Dentro de este entorno debes instalar todas las librerías necesarias con la siguiente línea de comando:
 ```
 pip install requirements.txt
 ```
