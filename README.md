@@ -13,7 +13,9 @@ Factoría F5 nos ha pedido desarrollar un software de reconocimiento facial para
 # :mechanical_arm:Estado del proyecto
 :construction: Proyecto en construcción :construction:
 
-*Siempre intentamos innovar y mejorar nuestros algoritmos !*
+*Siempre intentamos innovar y mejorar nuestros algoritmos!*
+
+Versión 2.0 ya en desarrollo.
 
 ## :hammer:Funcionalidades del proyecto
 
