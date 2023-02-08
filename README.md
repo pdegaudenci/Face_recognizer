@@ -54,4 +54,4 @@ python3 main.py
 
 ## :mailbox:Contacta con nosotros:
 - Discord:https://discord.gg/7pDFqxpR
-- Email: hello@computervisionF5.com
+- Email: hello@cvsolutions.com
