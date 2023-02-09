@@ -109,75 +109,7 @@ def detectar_caras(imagen: Union[PIL.Image.Image, np.ndarray],
     return bboxes.astype(int)
 
 
-def mostrar_bboxes(imagen: Union[PIL.Image.Image, np.ndarray],
-                   bboxes: np.ndarray,
-                   identidades: list=None,
-                   ax=None ) -> None:
 
-
-    # Comprobaciones iniciales
-    # --------------------------------------------------------------------------
-    if not isinstance(imagen, (np.ndarray, PIL.Image.Image)):
-        raise Exception(
-            f"`imagen` debe ser `np.ndarray, PIL.Image`. Recibido {type(imagen)}."
-        )
-        
-    if identidades is not None:
-        if len(bboxes) != len(identidades):
-            raise Exception(
-                '`identidades` debe tener el mismo número de elementos que `bboxes`.'
-            )
-    else:
-        identidades = [None] * len(bboxes)
-
-    # Mostrar la imagen y superponer bounding boxes
-    # --------------------------------------------------------------------------
-    if ax is None:
-        ax = plt.gca()
-        
-    if isinstance(imagen, PIL.Image.Image):
-        imagen = np.array(imagen).astype(np.float32) / 255
-        
-    ax.imshow(imagen)
-    ax.axis('off')
-    
-    if len(bboxes) > 0:
-        
-        for i, bbox in enumerate(bboxes):
-            if identidades[i] is not None:
-                rect = plt.Rectangle(
-                            xy        = (bbox[0], bbox[1]),
-                            width     = bbox[2] - bbox[0],
-                            height    = bbox[3] - bbox[1],
-                            linewidth = 1,
-                            edgecolor = 'lime',
-                            facecolor = 'none'
-                        )
-                
-                ax.add_patch(rect)
-                
-                ax.text(
-                    x = bbox[0],
-                    y = bbox[1] -10,
-                    s = identidades[i],
-                    fontsize = 10,
-                    color    = 'lime'
-                )
-            else:
-                rect = plt.Rectangle(
-                            xy        = (bbox[0], bbox[1]),
-                            width     = bbox[2] - bbox[0],
-                            height    = bbox[3] - bbox[1],
-                            linewidth = 1,
-                            edgecolor = 'red',
-                            facecolor = 'none'
-                        )
-                
-                ax.add_patch(rect)
-                
-        plt.show()
-        
-        
 def mostrar_bboxes_cv2(imagen: Union[PIL.Image.Image, np.ndarray],
                        bboxes: np.ndarray,
                        identidades: list=None,
