@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="IconoVentanaPpal">
+    <file>Icono ventana.png</file>
+    <file>imagenFondo.jpg</file>
+  </qresource>
+</RCC>
