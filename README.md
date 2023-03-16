@@ -1,6 +1,5 @@
 <h1 align="center">
   <p align="left">Proyecto de Computer Vision Face Recognizer</p>
-  <img align="center" width="300" height="300" src="https://user-images.githubusercontent.com/108665441/217483255-1d0f97e5-25b4-4d7b-b6f6-8bbb0057a432.png">
 </h1>
 
 # Descripción del proyecto 
