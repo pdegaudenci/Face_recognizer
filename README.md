@@ -22,9 +22,6 @@ Actualmente , estoy realizando una versión 2.0 del prototipo para mejorar la in
 - `Funcionalidad 2`: login facial para reconocer a los invitados e invitadas de F5 y permitirles la entrada.
 - `Funcionalidad 3`: reconocimiento facial en tiempo real.
 
-## 📁 Acceso al proyecto
-
-*Descarga el contenido del repositorio* >> https://github.com/Factoria-F5-AI-Bootcamp-1-Edicion/Py_face_recognition
 
 ## 🛠️ Abre y ejecuta el proyecto
 
