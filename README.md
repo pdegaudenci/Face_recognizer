@@ -1,21 +1,20 @@
 <h1 align="center">
-  <p align="left">Proyecto de Computer Vision: F5Recognition</p>
+  <p align="left">Proyecto de Computer Vision Face Recognizer</p>
   <img align="center" width="300" height="300" src="https://user-images.githubusercontent.com/108665441/217483255-1d0f97e5-25b4-4d7b-b6f6-8bbb0057a432.png">
 </h1>
 
-# CVSolutions 
-Nuestro equipo ha trabajado en diferentes proyectos de Inteligencia Artificial, especializándonos en Computer Vision con ML y DL. 
-Buscamos innovación y por ello brindamos soluciones con softwares que desarrollamos exclusivamente para cada cliente, buscando siempre que su implementación sea la más fácil y rentable posible.
-
 # Descripción del proyecto 
-Factoría F5 nos ha pedido desarrollar un software de reconocimiento facial para controlar la entrada de la fiesta que están organizando para sus trabajadores. El cuál hemos denominado: **F5Recognition**.
+Software de reconocimiento facial basada en redes neuronales convolucionales pre entrenadas, adaptadas al caso de negocio planteado:
+
+** Interfaz grafica de usuario que permite registro facial de una persona y login facial
+** En función de los embeddings de los rostros generados por la Red neuronal, debe permitir la identificación en tiempo real de las personas a traves de un dispositivo de tipo webcam.
+
+Actualmente , estoy realizando una versión 2.0 del prototipo para mejorar la interfaz gráfica , mediante la sustitucion de la libreria Tkinter con la libreria PySide6 y Qt Designer.
 
 # :mechanical_arm:Estado del proyecto
 :construction: Proyecto en construcción :construction:
 
-*Siempre intentamos innovar y mejorar nuestros algoritmos!*
 
-Versión 2.0 ya en desarrollo.
 
 ## :hammer:Funcionalidades del proyecto
 
@@ -37,7 +36,7 @@ conda create -n nombreEntorno
 ```
 pip install requirements.txt
 ```
-3. Situate en la carpeta que contiene los archivos y desde allí ejecute:
+3. Situate en la carpeta raiz del proyecto y desde allí ejecute:
 ```
 python3 main.py
 ```
@@ -45,13 +44,10 @@ python3 main.py
 # :wrench: Tecnologías usadas:
 
    - **Metodología Scrum:** Trello (https://trello.com/b/USt8dHnW/py-reconocimiento-facial-trello)
-   - **Desarrollo:** Git y GitHub, Pycharm, VsCode, OpenCV, Tkinter, Numpy, Red Neuronal pre entrenada MTCNN, Pytorch, Pipeline.
+   - **Desarrollo:** Git ,  VSCode, OpenCV, face recognition, Tkinter, Numpy, Red Neuronal MTCNN, Pytorch, Pipeline.
    - **Presentación:** Canva (https://www.canva.com/design/DAFZ5KQejhI/0p_9DZry9B3d4tTVH8OMtQ/edit) 
 
 
 ## Autores
 ![equipo](https://user-images.githubusercontent.com/108665441/217483671-7832066e-e9ff-4156-ab51-f97c6930b749.png)
 
-## :mailbox:Contacta con nosotros:
-- Discord:https://discord.gg/7pDFqxpR
-- Email: hello@cvsolutions.es
