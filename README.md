@@ -5,8 +5,8 @@
 # Descripción del proyecto 
 Software de reconocimiento facial basada en redes neuronales convolucionales pre entrenadas, adaptadas al caso de negocio planteado:
 
-**Interfaz grafica de usuario que permite registro facial de una persona y login facial**
-**En función de los embeddings de los rostros generados por la Red neuronal, debe permitir la identificación en tiempo real de las personas a traves de un dispositivo de tipo webcam.**
+- **Interfaz grafica de usuario que permite registro facial de una persona y login facial**
+- **En función de los embeddings de los rostros generados por la Red neuronal, debe permitir la identificación en tiempo real de las personas a traves de un dispositivo de tipo webcam.**
 
 Actualmente , estoy realizando una versión 2.0 del prototipo para mejorar la interfaz gráfica , mediante la sustitucion de la libreria Tkinter con la libreria PySide6 y Qt Designer.
 
