@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normalon>:/IconoVentanaPpal/Icono ventana.png</normalon>
+    <normalon>:/images/Icono ventana.png</normalon>
    </iconset>
   </property>
   <property name="autoFillBackground">
@@ -29,13 +29,13 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>0</y>
+      <y>-20</y>
       <width>871</width>
       <height>871</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image:url(:/IconoVentanaPpal/imagenFondo.jpg)</string>
+     <string notr="true">background-image: url(:/images/fondo.jpg)</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -46,15 +46,15 @@
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>150</y>
-       <width>641</width>
+       <x>280</x>
+       <y>190</y>
+       <width>361</width>
        <height>341</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="iniciar_sesion">
         <property name="styleSheet">
          <string notr="true">color:rgb(240, 240, 240)</string>
         </property>
@@ -64,7 +64,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="registro">
         <property name="styleSheet">
          <string notr="true">color:rgb(240, 240, 240)</string>
         </property>
@@ -74,7 +74,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="deteccion_facial">
         <property name="styleSheet">
          <string notr="true">color:rgb(240, 240, 240)</string>
         </property>
@@ -100,7 +100,7 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="recursosGUIPrincipal.qrc"/>
+  <include location="resources.qrc"/>
  </resources>
  <connections/>
 </ui>
