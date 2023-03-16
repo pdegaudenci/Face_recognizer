@@ -3,7 +3,7 @@
 </h1>
 
 # Descripción del proyecto 
-Software de reconocimiento facial basada en redes neuronales convolucionales pre entrenadas, adaptadas al caso de negocio planteado:
+Software de reconocimiento facial basada en redes neuronales convolucionales pre entrenadas, adaptadas al caso de uso planteado:
 
 - **Interfaz grafica de usuario que permite registro facial de una persona y login facial**
 - **En función de los embeddings de los rostros generados por la Red neuronal, debe permitir la identificación en tiempo real de las personas a traves de un dispositivo de tipo webcam.**
