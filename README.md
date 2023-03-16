@@ -39,7 +39,7 @@ python3 main.py
 
 # :wrench: Tecnologías usadas:
 
-   - **Metodología Scrum:** Trello (https://trello.com/b/USt8dHnW/py-reconocimiento-facial-trello)
+   - **Metodología Scrum** 
    - **Desarrollo:** Git ,  VSCode, OpenCV, face recognition, Tkinter, Numpy, Red Neuronal MTCNN, Pytorch, Pipeline.
    - **Presentación:** Canva (https://www.canva.com/design/DAFZ5KQejhI/0p_9DZry9B3d4tTVH8OMtQ/edit) 
 
