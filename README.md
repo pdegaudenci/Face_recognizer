@@ -5,8 +5,8 @@
 # Descripción del proyecto 
 Software de reconocimiento facial basada en redes neuronales convolucionales pre entrenadas, adaptadas al caso de negocio planteado:
 
-** Interfaz grafica de usuario que permite registro facial de una persona y login facial
-** En función de los embeddings de los rostros generados por la Red neuronal, debe permitir la identificación en tiempo real de las personas a traves de un dispositivo de tipo webcam.
+**Interfaz grafica de usuario que permite registro facial de una persona y login facial**
+**En función de los embeddings de los rostros generados por la Red neuronal, debe permitir la identificación en tiempo real de las personas a traves de un dispositivo de tipo webcam.**
 
 Actualmente , estoy realizando una versión 2.0 del prototipo para mejorar la interfaz gráfica , mediante la sustitucion de la libreria Tkinter con la libreria PySide6 y Qt Designer.
 
@@ -40,8 +40,11 @@ python3 main.py
 # :wrench: Tecnologías usadas:
 
    - **Metodología Scrum** 
-   - **Desarrollo:** Git ,  VSCode, OpenCV, face recognition, Tkinter, Numpy, Red Neuronal MTCNN, Pytorch, Pipeline.
-   - **Presentación:** Canva (https://www.canva.com/design/DAFZ5KQejhI/0p_9DZry9B3d4tTVH8OMtQ/edit) 
+   - **Desarrollo**: Git y VSCode
+   - **Libreria para tratamiento de imagenes:** matplotlib , PIL , OpenCV y tensorflow.keras.utils
+   - **Redes neuronales:** FaceNet, MTCNN, face recognition, keras-Tensorflow y Pytorch 
+   - **Libreria para tratamientos numericos:** Numpy
+   - **Librerías para construccion de GUIs:** TKinter y PySide6
 
 
 ## Autores
