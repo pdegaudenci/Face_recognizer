@@ -18,9 +18,9 @@ Actualmente , estoy realizando una versión 2.0 del prototipo para mejorar la in
 
 ## :hammer:Funcionalidades del proyecto
 
-- `Funcionalidad 1`: registro facial de todos los invitados e invitadas a la fiesta de  F5.
-- `Funcionalidad 2`: login facial para reconocer a los invitados e invitadas de F5 y permitirles la entrada.
-- `Funcionalidad 3`: reconocimiento facial en tiempo real.
+- `Funcionalidad 1`: registro facia.
+- `Funcionalidad 2`: login facial para reconocer a los invitados en base a una base de datos de personas con credenciales de autenticación.
+- `Funcionalidad 3`: reconocimiento facial en tiempo real, que identifica a personas de forma positivo (Nombre y apellido) o negativa , renderizando un bounding box en en los rostros detectados en el video de webcam.
 
 
 ## 🛠️ Abre y ejecuta el proyecto
