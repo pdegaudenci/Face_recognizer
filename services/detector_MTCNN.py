@@ -256,7 +256,6 @@ def calcular_embeddings(img_caras: np.ndarray, encoder=None,
     caras = caras.astype(np.float32) / 255
     caras = torch.tensor(caras)
     embeddings = encoder.forward(caras).detach().cpu().numpy()
-    embeddings = embeddings
     return embeddings
 
 
