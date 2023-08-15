@@ -21,6 +21,14 @@ Actualmente , estoy realizando una versión 2.0 del prototipo para mejorar la in
 - `Funcionalidad 2`: login facial para reconocer a los invitados en base a una base de datos de personas con credenciales de autenticación.
 - `Funcionalidad 3`: reconocimiento facial en tiempo real, que identifica a personas de forma positivo (Nombre y apellido) o negativa , renderizando un bounding box en en los rostros detectados en el video de webcam.
 
+### Prerequisites
+
+* Docker engine, docker cli y docker-compose
+  ```windows
+        choco install docker-engine docker-cli docker-compose
+     sh
+     sudo apt update -y && sudo apt install docker-ce docker-ce-cli containerd.io
+  ```
 
 ## 🛠️ Abre y ejecuta el proyecto
 
