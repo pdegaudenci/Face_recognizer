@@ -47,14 +47,14 @@ python3 main.py
 
 # :wrench: Tecnologías usadas:
 
-   - **Metodología Scrum** 
+   - **Metodología Scrum**
+   - **CI/CD** : Jenkins y sonarqube (Analisis de de calidad del codigo)
+   - **Deployment**: Docker (orquestador : docker compose)
+   - **Servidores ligeros**: ngrok y uvicorn
    - **Desarrollo**: Git y VSCode
    - **Libreria para tratamiento de imagenes:** matplotlib , PIL , OpenCV y tensorflow.keras.utils
    - **Redes neuronales:** FaceNet, MTCNN, face recognition, keras-Tensorflow y Pytorch 
    - **Libreria para tratamientos numericos:** Numpy
    - **Librerías para construccion de GUIs:** TKinter y PySide6
 
-
-## Autores
-![equipo](https://user-images.githubusercontent.com/108665441/217483671-7832066e-e9ff-4156-ab51-f97c6930b749.png)
 
