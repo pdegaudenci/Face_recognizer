@@ -1,12 +1,22 @@
 # docker-compose.yml
 
 version: '3.8'
-
 services:
-  face_recognizer_backend:
-    build: .
-    command: uvicorn app.main:app --host 0.0.0.0
+  face_recognizer_gui:
+    build: ./Frontend_Gui
+    command: python interfaz.py
+    restart: always
     volumes:
       - .:/app
     ports:
       - 8008:8000
+  face_recognizer_backend:
+    build: ./backend
+    command: uvicorn main:main
+    restart: always
+    volumes:
+      - db-data:/var/lib/data
+    ports:
+      - 9000:9000
+volumes:
+  db-data:

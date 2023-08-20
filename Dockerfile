@@ -28,4 +28,4 @@ ENV PYTHONUNBUFFERED 1
 # Se crea un volume con el contenido de la aplicacion
 VOLUME /face_recognizer
  
-
+CMD [“python”, “./main.py”] 
