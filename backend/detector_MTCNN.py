@@ -15,8 +15,6 @@ from scipy.spatial.distance import cosine
 import os
 import imutils
 from tkinter import *
-from PIL import Image
-from PIL import ImageTk
 from imutils.video import VideoStream
 import time
 import warnings

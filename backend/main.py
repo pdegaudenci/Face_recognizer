@@ -1,33 +1,31 @@
-from models.Usuario import Usuario
-from fastapi import FastAPI, UploadFile,File, Depends, Form
-from pydantic import BaseModel, Json
-from service_auth import *
-from skimage import io, color
-from typing import Annotated
-from os import getcwd
-from services import existe_usuario
+from fastapi import FastAPI
+from routes import api_router
+from services import crear_diccionario_referencias, guardar_archivo
+from os import getcwd, path
+import torch
 
-app = FastAPI()
+app = FastAPI(
+    title= "Face recognizer API Rest",
+    description= "",
+    openapi_tags=[{
+    "name": "Face recognizer API Rest",
+    "description":""
+    }])
 
+# Creo diccionario de embeddings sino existe 
+if not path.exists('Data/embeddings.json'):
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    print(F'Running on device: {device}')
 
-@app.post("/registro/{user}")
-async def registrar_usuario(imagen: UploadFile = None):
-    with open(getcwd()+imagen.filename,"wb") as my_img:
-        contenido = await imagen.read()
-        my_img.write(contenido)
-        my_img.close()
-        return True
-
-@app.post("/login/{user}")
-async def login_usuario(user:str,imagen: UploadFile = None):
-    with open(getcwd()+"temp_"+imagen.filename,"wb") as my_img:
-        contenido = await imagen.read()
-        my_img.write(contenido)
-        existe, similitud= existe_usuario(my_img,user)
-        if  existe!= None :
-            existe = True
-        my_img.close()
-        return {"existe":existe, "similitud":similitud}
-    
-def encoder():
-    return None
+    # Obtengo diccionario de referencia de embeddings de las imagenes almacenadas en carpeta imagenes
+    dict_referencias = crear_diccionario_referencias(
+                    folder_path    =getcwd()+"/Data/imagenes",
+                    min_face_size  = 40,
+                    min_confidence = 0.9,
+                    device         = device,
+                    verbose        = True
+                  )
+    guardar_archivo(dict_referencias,"/Data/embeddings","json")
+# CREO SISTEMA DE ENRUTADO DE LA API
+# Agrego a la aplicacion enrutamiento 
+app.include_router(api_router)
