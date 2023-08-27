@@ -2,18 +2,10 @@
 
 version: '3.8'
 services:
-  face_recognizer_gui:
-    build: ./Frontend_Gui
-    command: python interfaz.py
-    restart: always
-    volumes:
-      - .:/app
-    ports:
-      - 8008:8000
   face_recognizer_backend:
     build: ./backend
-    command: uvicorn main:main
     restart: always
+    tty: true
     volumes:
       - db-data:/var/lib/data
     ports:

@@ -8,7 +8,7 @@ VOLUME /face_recognizer-GUI
 
 COPY requeriments.txt /
 RUN apt-get update && apt-get install libgl1
-RUN  pip install  -r  /requeriments.txt
+RUN  pip install --no-cache-dir -r  /requeriments.txt
 
 
 # Se crea un usuario para arrancar uWSGI
