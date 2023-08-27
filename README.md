@@ -45,6 +45,10 @@ pip install requirements.txt
 python3 main.py
 ```
 
+## Despliegue 📦
+_Despliegue de microservicios en contenedores (En construccion)_
+ - Run `docker-compose up -d`
+ - Rutas permitidas en http://localhost:9000 
 # :wrench: Tecnologías usadas:
 
    - **Metodología Scrum**
